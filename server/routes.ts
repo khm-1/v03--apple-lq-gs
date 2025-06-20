@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { insertStockSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Get portfolio data
@@ -37,6 +38,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(transactions);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch transactions" });
+    }
+  });
+
+  // Add new stock to watchlist
+  app.post("/api/stocks", async (req, res) => {
+    try {
+      const result = insertStockSchema.safeParse(req.body);
+      if (!result.success) {
+        return res.status(400).json({ message: "Invalid stock data", errors: result.error.errors });
+      }
+      
+      const stock = await storage.createStock(result.data);
+      res.status(201).json(stock);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to create stock" });
     }
   });
 

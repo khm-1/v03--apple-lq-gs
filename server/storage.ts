@@ -14,6 +14,8 @@ export interface IStorage {
   
   getTransactions(userId: number): Promise<Transaction[]>;
   createTransaction(transaction: InsertTransaction): Promise<Transaction>;
+  
+  createStock(stock: InsertStock): Promise<Stock>;
 }
 
 export class MemStorage implements IStorage {
@@ -137,6 +139,13 @@ export class MemStorage implements IStorage {
     this.transactions.set(insertTransaction.userId, userTransactions);
     
     return transaction;
+  }
+
+  async createStock(insertStock: InsertStock): Promise<Stock> {
+    const id = this.currentStockId++;
+    const stock: Stock = { ...insertStock, id };
+    this.stocks.set(stock.symbol, stock);
+    return stock;
   }
 }
 

@@ -1,4 +1,5 @@
 import GlassPanel from "./glass-panel";
+import AddStockModal from "./add-stock-modal";
 import { Search, Plus, TrendingUp, TrendingDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,14 +33,16 @@ export default function Watchlist({ stocks }: WatchlistProps) {
               className="bg-transparent text-white placeholder:text-slate-400 border-none outline-none text-sm w-32 md:w-40 p-0 h-auto focus-visible:ring-0"
             />
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="glass-morphism-dark text-white hover:bg-white/20"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Add Symbol
-          </Button>
+          <AddStockModal>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="glass-morphism-dark text-white hover:bg-white/20"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Symbol
+            </Button>
+          </AddStockModal>
         </div>
       </div>
       
