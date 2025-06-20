@@ -70,6 +70,7 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
   }
   
   .glass-morphism-dark {
@@ -77,6 +78,7 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border-dark);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
   }
   
   .gradient-bg {

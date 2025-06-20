@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -94,31 +95,36 @@ export default function AddStockModal({ children }: AddStockModalProps) {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="glass-morphism-dark border-white/20 text-white max-w-md">
+      <DialogContent className="glass-morphism border-white/10 text-white max-w-md backdrop-blur-xl bg-slate-900/80 shadow-2xl">
         <DialogHeader>
-          <DialogTitle className="text-white flex items-center gap-2">
-            <Plus className="w-5 h-5" />
+          <DialogTitle className="text-white flex items-center gap-2 text-xl font-semibold">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <Plus className="w-4 h-4" />
+            </div>
             Add Stock to Watchlist
           </DialogTitle>
+          <DialogDescription className="text-slate-300 text-sm">
+            Enter the stock details to add it to your watchlist for monitoring.
+          </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 mt-6">
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="symbol"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-300">Symbol</FormLabel>
+                    <FormLabel className="text-slate-300 font-medium">Symbol</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="AAPL"
-                        className="glass-morphism-dark border-white/20 text-white placeholder:text-slate-400"
+                        className="glass-morphism border-white/10 text-white placeholder:text-slate-500 bg-slate-800/50 focus:bg-slate-800/70 transition-all"
                         {...field}
                         onChange={(e) => field.onChange(e.target.value.toUpperCase())}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
@@ -127,15 +133,15 @@ export default function AddStockModal({ children }: AddStockModalProps) {
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-300">Price ($)</FormLabel>
+                    <FormLabel className="text-slate-300 font-medium">Price ($)</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="173.50"
-                        className="glass-morphism-dark border-white/20 text-white placeholder:text-slate-400"
+                        className="glass-morphism border-white/10 text-white placeholder:text-slate-500 bg-slate-800/50 focus:bg-slate-800/70 transition-all"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
@@ -146,15 +152,15 @@ export default function AddStockModal({ children }: AddStockModalProps) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-slate-300">Company Name</FormLabel>
+                  <FormLabel className="text-slate-300 font-medium">Company Name</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Apple Inc."
-                      className="glass-morphism-dark border-white/20 text-white placeholder:text-slate-400"
+                      className="glass-morphism border-white/10 text-white placeholder:text-slate-500 bg-slate-800/50 focus:bg-slate-800/70 transition-all"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -165,15 +171,15 @@ export default function AddStockModal({ children }: AddStockModalProps) {
                 name="change"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-300">Change ($)</FormLabel>
+                    <FormLabel className="text-slate-300 font-medium">Change ($)</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="4.12"
-                        className="glass-morphism-dark border-white/20 text-white placeholder:text-slate-400"
+                        className="glass-morphism border-white/10 text-white placeholder:text-slate-500 bg-slate-800/50 focus:bg-slate-800/70 transition-all"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
@@ -182,15 +188,15 @@ export default function AddStockModal({ children }: AddStockModalProps) {
                 name="changePercent"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-300">Change (%)</FormLabel>
+                    <FormLabel className="text-slate-300 font-medium">Change (%)</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="2.4"
-                        className="glass-morphism-dark border-white/20 text-white placeholder:text-slate-400"
+                        className="glass-morphism border-white/10 text-white placeholder:text-slate-500 bg-slate-800/50 focus:bg-slate-800/70 transition-all"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
@@ -202,17 +208,17 @@ export default function AddStockModal({ children }: AddStockModalProps) {
                 name="volume"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-300">Volume</FormLabel>
+                    <FormLabel className="text-slate-300 font-medium">Volume</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
                         placeholder="45200000"
-                        className="glass-morphism-dark border-white/20 text-white placeholder:text-slate-400"
+                        className="glass-morphism border-white/10 text-white placeholder:text-slate-500 bg-slate-800/50 focus:bg-slate-800/70 transition-all"
                         {...field}
                         onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
@@ -221,33 +227,33 @@ export default function AddStockModal({ children }: AddStockModalProps) {
                 name="marketCap"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-300">Market Cap</FormLabel>
+                    <FormLabel className="text-slate-300 font-medium">Market Cap</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="$2.7T"
-                        className="glass-morphism-dark border-white/20 text-white placeholder:text-slate-400"
+                        className="glass-morphism border-white/10 text-white placeholder:text-slate-500 bg-slate-800/50 focus:bg-slate-800/70 transition-all"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-400" />
                   </FormItem>
                 )}
               />
             </div>
 
-            <div className="flex justify-end gap-3 pt-4">
+            <div className="flex justify-end gap-3 pt-6 border-t border-white/10">
               <Button
                 type="button"
                 variant="ghost"
                 onClick={() => setOpen(false)}
-                className="text-slate-300 hover:text-white hover:bg-white/10"
+                className="text-slate-300 hover:text-white glass-morphism hover:bg-white/10 transition-all"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={createStockMutation.isPending}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all hover:scale-105"
               >
                 {createStockMutation.isPending ? (
                   <>
